@@ -3,6 +3,8 @@
 
 use cortex_m::peripheral::{SCB, SYST};
 
+use cortex_m_semihosting::hprintln;
+
 const MAX_VMS: usize = 2;
 
 #[repr(C)]
@@ -47,7 +49,8 @@ pub fn start_systick(ticks: u32) {
 #[export_name = "SysTick"]
 pub unsafe extern "C" fn systick_handler() {
     const ICSR_PENDSVSET: u32 = 1 << 28;
-    (*SCB::PTR).icsr.write(ICSR_PENDSVSET);
+    hprintln!("Hello from SysTick!");
+//    (*SCB::PTR).icsr.write(ICSR_PENDSVSET);
 }
 
 //────────────────── PendSV global ASM ──────────────────
