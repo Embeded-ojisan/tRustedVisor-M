@@ -72,6 +72,7 @@ dependencies = [
 name = "hv"
 version = "0.1.0"
 dependencies = [
+ "cortex-m",
  "cortex-m-rt",
  "cortex-m-semihosting",
  "panic-halt",
@@ -167,6 +168,7 @@ checksum = "77439c1b53d2303b20d9459b1ade71a83c716e3f9c34f3228c00e6f185d6c002"
 name = "vm0"
 version = "0.1.0"
 dependencies = [
+ "cortex-m",
  "cortex-m-rt",
  "panic-halt",
 ]

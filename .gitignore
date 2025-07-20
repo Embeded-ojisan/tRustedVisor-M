@@ -1,4 +1,2 @@
-**/target/
-/bios/*
-**/mnt/
-**/esp/
+/target
+/Cargo.lock

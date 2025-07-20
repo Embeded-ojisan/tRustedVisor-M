@@ -3,7 +3,6 @@
 #![feature(naked_functions)]
 
 use cortex_m_rt::entry;
-use cortex_m_semihosting::hprintln;
 
 mod hv;
 mod hypercall;
@@ -11,8 +10,6 @@ mod panic;
 
 #[entry]
 fn main() -> ! {
-    hprintln!("Hello from hv!");
-
     hv::init_sau_mpu();
     unsafe { hv::init_vm_table() };
     hv::start_systick(64_000);
