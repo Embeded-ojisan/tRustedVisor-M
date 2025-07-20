@@ -1,1 +1,0 @@
-/home/shu/vscode_workspace/tRustedVisor-M2/tRustedVisor-M/target/thumbv8m.main-none-eabi/release/vm0: /home/shu/vscode_workspace/tRustedVisor-M2/tRustedVisor-M/vm0/build.rs /home/shu/vscode_workspace/tRustedVisor-M2/tRustedVisor-M/vm0/memory.x /home/shu/vscode_workspace/tRustedVisor-M2/tRustedVisor-M/vm0/src/main.rs
