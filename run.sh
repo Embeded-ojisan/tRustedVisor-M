@@ -2,8 +2,6 @@
 set -eu
 
 # 1) hv / vm0 をビルド
-#cargo hv
-#cargo vm0
 cargo build -p hv  --release
 cargo build -p vm0 --release
 
@@ -12,10 +10,6 @@ SEC=target/thumbv8m.main-none-eabi/release/hv
 NSC=target/thumbv8m.main-none-eabi/release/vm0
 
 # 3) QEMU 実行
-
-#qemu-system-arm -machine mps2-an505 -cpu cortex-m33 -nographic -semihosting \
-#  -kernel "$SEC" \
-#  -device loader,file="$NSC"
 
 qemu-system-arm -machine mps2-an505 -cpu cortex-m33 -nographic -semihosting \
   -device loader,file=target/thumbv8m.main-none-eabi/release/hv,addr=0x10000000 \
