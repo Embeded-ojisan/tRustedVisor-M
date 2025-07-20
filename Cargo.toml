@@ -1,0 +1,8 @@
+[workspace]
+members = ["hv", "vm0"]
+resolver = "2"
+
+[profile.dev]
+panic = "abort"
+[profile.release]
+panic = "abort"

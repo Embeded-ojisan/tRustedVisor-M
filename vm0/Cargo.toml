@@ -1,0 +1,15 @@
+[package]
+name         = "vm0"
+version      = "0.1.0"
+edition      = "2021"
+publish      = false
+autobins     = false
+build = "build.rs"   # ← 追加
+
+[dependencies]
+cortex-m-rt = "0.7"
+panic-halt  = "0.2"
+
+[[bin]]
+name = "vm0"
+path = "src/main.rs"

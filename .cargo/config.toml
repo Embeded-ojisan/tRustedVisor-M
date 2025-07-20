@@ -1,0 +1,29 @@
+[build]
+target = "thumbv8m.main-none-eabi"
+
+#[target.thumbv8m.main-none-eabi]
+#runner = "qemu-system-arm -machine mps2-an505 -cpu cortex-m33 -nographic -semihosting -kernel"
+#rustflags = [
+#  "-C", "link-arg=-Tmemory.x",
+#  "-C", "link-arg=-Tlink.x",     # cortex-m-rt が供給
+#  "-C", "panic=abort"
+#]
+
+[target.thumbv8m.main-none-eabi]
+rustflags = [
+  "-C", "link-arg=-Tlink.x"       # これだけで十分
+]
+# hv/Cargo.toml
+[package.metadata.cortex-m-rt]
+# デフォルト memory.x を無効化
+omit-gcc-check = true
+
+[env]
+# panic* クレートのログを uart0 に流したい場合などはここに追記
+
+[alias]
+hv   = "build -p hv     --release"
+vm0   = "build -p vm0  --release"
+
+[workspace]
+resolver = "2"
