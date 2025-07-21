@@ -1,6 +1,7 @@
 #![no_std]
 #![no_main]
-#![feature(naked_functions)]
+
+#![feature(abi_cmse_nonsecure_call)]
 
 use cortex_m_rt::entry;
 use cortex_m_semihosting::hprintln;
@@ -13,17 +14,15 @@ mod panic;
 fn main() -> ! {
     hprintln!("Hello from hv!");
 
-    hv::init_sau_mpu();
-    unsafe { hv::init_vm_table() };
-    hv::start_systick(64_000);
-    hv::start_first_vm();
+    unsafe {
+        hv::init_sau_mpu();
+        hv::init_vm_table();
+    }
 
-    // diverging tail: stay in WFI
-    loop { cortex_m::asm::wfi(); }
+    hprintln!("Hello from hv2!");
+    hv::start_systick(64_000);   // 1 ms tick
+    hv::start_first_vm();        // ← ここから先は戻らない (!)
 
-    // 3️⃣ SysTick (1ms) を起動 — PendSV ハンドルへ繋がる
-    hv::start_systick(64_000); // 64 MHz クロック想定で 64_000 = 1 ms
-
-    // 4️⃣ 最初の VM へジャンプ（まだダミー）
-    hv::start_first_vm();
+    // ↓↓↓ 以下は実行されないので削除するか #[allow(unreachable_code)]
+    // loop { cortex_m::asm::wfi(); }
 }
