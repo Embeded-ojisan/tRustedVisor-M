@@ -75,7 +75,7 @@ pub fn start_systick(ticks: u32) {
 #[export_name = "SysTick"]
 pub unsafe extern "C" fn systick_handler() {
     const ICSR_PENDSVSET: u32 = 1 << 28;
-    hprintln!("Hello from SysTick!");
+//    hprintln!("Hello from SysTick!");
 //    (*SCB::PTR).icsr.write(ICSR_PENDSVSET);
 }
 
