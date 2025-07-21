@@ -6,6 +6,9 @@ publish      = false
 autobins     = false
 build = "build.rs"   # ← 追加
 
+[package.metadata.cortex-m-rt]
+memory.x = "memory.x"
+
 [dependencies]
 cortex-m = "0.7.6"
 cortex-m-rt = "0.7"

@@ -1,5 +1,9 @@
 [build]
 target = "thumbv8m.main-none-eabi"
+rustflags = [
+  "-C", "link-arg=-Tlinker.ld",
+  "-C", "target-feature=+cmse"
+]
 
 [target.thumbv8m.main-none-eabi]
 rustflags = [
@@ -10,6 +14,7 @@ rustflags = [
 [package.metadata.cortex-m-rt]
 # デフォルト memory.x を無効化
 omit-gcc-check = true
+memory.x = "memory.x"
 
 [env]
 # panic* クレートのログを uart0 に流したい場合などはここに追記
